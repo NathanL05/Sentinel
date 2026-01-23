@@ -9,3 +9,4 @@ httpx>=0.28.1
 
 # Linting & Formatting
 ruff>=0.14.13
+pre-commit>=3.5.0
