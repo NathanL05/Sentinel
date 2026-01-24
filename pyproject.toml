@@ -38,7 +38,8 @@ select = [
 ignore = [
     "TRY003",
     "EM101",
-    "ISC001",  # Conflicts with formatter
+    "ISC001",
+    "I001"
 ]
 
 fixable = ["ALL"]

@@ -2,8 +2,9 @@
 
 from typing import Any
 
-import docker
 from docker.errors import APIError, DockerException
+
+import docker
 
 _ZERO = 0.0
 
