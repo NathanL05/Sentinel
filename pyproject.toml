@@ -2,6 +2,7 @@
 line-length = 100
 target-version = "py311"
 
+[tool.ruff.lint]
 select = [
     "E",   # pycodestyle errors
     "W",   # pycodestyle warnings
@@ -34,7 +35,11 @@ select = [
     "RUF", # Ruff-specific rules
 ]
 
-ignore = []
+ignore = [
+    "TRY003",
+    "EM101",
+    "ISC001",  # Conflicts with formatter
+]
 
 fixable = ["ALL"]
 unfixable = []
