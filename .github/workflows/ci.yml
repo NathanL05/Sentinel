@@ -2,13 +2,18 @@ name: CI - Lint, Test, Coverage
 
 on: 
   push: 
+    branches: [main]
   pull_request:
-    branches: [main, develop]
+    branches: [main]
   workflow_dispatch:
 
+concurrency:                
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   lint:
     name: Lint and Format Check 
+    if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
     runs-on: ubuntu-latest
     steps: 
       - uses: actions/checkout@v4
