@@ -13,6 +13,7 @@ concurrency:
 jobs:
   lint:
     name: Lint and Format Check 
+    if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
     runs-on: ubuntu-latest
     steps: 
       - uses: actions/checkout@v4
