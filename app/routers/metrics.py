@@ -1,10 +1,14 @@
 from typing import Any
+
 from fastapi import APIRouter, HTTPException, Query
 from pydantic import BaseModel, Field
+
+from app.config import get_settings
 from app.docker_client import DockerClient
 
 router = APIRouter(prefix="/api/v1", tags=["metrics"])
-docker_client = DockerClient()
+_settings = get_settings()
+docker_client = DockerClient(base_url=f"unix://{_settings.docker_socket_path}")
 
 
 class ContainerResponse(BaseModel):
