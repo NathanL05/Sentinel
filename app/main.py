@@ -5,8 +5,11 @@ from datetime import datetime, timezone
 from fastapi import FastAPI
 
 from app import __version__
+from app.routers.metrics import router
 
 app = FastAPI(title="Sentinel", version=__version__)
+
+app.include_router(router)
 
 
 @app.get("/")
