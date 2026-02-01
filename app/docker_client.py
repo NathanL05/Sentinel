@@ -10,9 +10,12 @@ _ZERO = 0.0
 
 
 class DockerClient:
-    def __init__(self) -> None:
+    def __init__(self, base_url: str | None = None) -> None:
         try:
-            self.client = docker.from_env()
+            if base_url is not None:
+                self.client = docker.DockerClient(base_url=base_url)
+            else:
+                self.client = docker.from_env()
             self.client.ping()
         except DockerException as e:
             raise DockerException("Error initializing Docker client") from e

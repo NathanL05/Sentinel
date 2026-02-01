@@ -24,3 +24,17 @@ async def health_check() -> dict[str, str | datetime]:
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "version": __version__,
     }
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    from app.config import get_settings
+
+    s = get_settings()
+    uvicorn.run(
+        "app.main:app",
+        host=s.api_host,
+        port=s.api_port,
+        log_level=s.log_level.lower(),
+    )
